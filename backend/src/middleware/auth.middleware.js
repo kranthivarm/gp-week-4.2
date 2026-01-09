@@ -3,7 +3,11 @@ const Merchant = require("../models/Merchant");
 module.exports = async (req, res, next) => {
   const key = req.header("X-Api-Key");
   const secret = req.header("X-Api-Secret");
-
+  if (!key || !secret) {
+    return res.status(401).json({
+      error: "API credentials missing"
+    });
+  }
   const merchant = await Merchant.findOne({
     where: { api_key: key, api_secret: secret }
   });
