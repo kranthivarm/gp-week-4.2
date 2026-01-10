@@ -42,6 +42,7 @@
 //   );
 // }
 
+import "./index.css";
 
 export default function Transactions() {
   const [rows, setRows] = useState([]);

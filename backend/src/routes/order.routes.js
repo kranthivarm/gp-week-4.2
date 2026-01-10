@@ -3,6 +3,24 @@ const auth = require("../middleware/auth.middleware");
 const Order = require("../models/Order");
 const generateId = require("../utils/idGenerator");
 
+
+router.get("/:id/public", async (req, res) => {
+  const order = await Order.findByPk(req.params.id);
+  if (!order) {
+    return res.status(404).json({
+      error: { code: "NOT_FOUND_ERROR", description: "Order not found" }
+    });
+  }
+
+  res.json({
+    id: order.id,
+    amount: order.amount,
+    currency: order.currency,
+    status: order.status
+  });
+});
+
+
 router.post("/", auth, async (req, res) => {
   const { amount, currency = "INR", receipt, notes } = req.body;
 
