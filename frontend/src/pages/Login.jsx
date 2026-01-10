@@ -1,6 +1,4 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-
+// 
 export default function Login() {
   const navigate = useNavigate();
 
@@ -10,19 +8,27 @@ export default function Login() {
   };
 
   return (
-    <form data-test-id="login-form" onSubmit={submit}>
-      <input
-        data-test-id="email-input"
-        type="email"
-        placeholder="Email"
-        defaultValue="test@example.com"
-      />
-      <input
-        data-test-id="password-input"
-        type="password"
-        placeholder="Password"
-      />
-      <button data-test-id="login-button">Login</button>
-    </form>
+    <div className="container">
+      <div className="card" style={{ maxWidth: 420, margin: "auto" }}>
+        <h2>Merchant Login</h2>
+
+        <form data-test-id="login-form" onSubmit={submit}>
+          <input
+            data-test-id="email-input"
+            type="email"
+            placeholder="Email"
+            defaultValue="test@example.com"
+          />
+          <input
+            data-test-id="password-input"
+            type="password"
+            placeholder="Password"
+          />
+          <button data-test-id="login-button" style={{ width: "100%" }}>
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }

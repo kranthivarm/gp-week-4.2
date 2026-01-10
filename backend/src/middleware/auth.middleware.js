@@ -1,6 +1,17 @@
 const Merchant = require("../models/Merchant");
 
 module.exports = async (req, res, next) => {
+  // ✅ Skip auth for public endpoints  
+   if (
+    req.path.startsWith("/api/v1/orders/") && req.path.endsWith("/public") ||
+    req.path === "/api/v1/payments/public" ||
+    req.path === "/health" ||
+    req.path === "/api/v1/test/merchant"
+  ) {
+    return next();
+  }
+
+
   const key = req.header("X-Api-Key");
   const secret = req.header("X-Api-Secret");
   if (!key || !secret) {
